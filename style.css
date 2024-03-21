@@ -1,76 +1,88 @@
+/* Resets the default margin and padding for all elements to ensure consistency across browsers. */
 * {
     margin: 0px;
     padding: 0px;
 }
 
+/* Defines root CSS variables that can be used throughout the stylesheet. */
 :root {
-    --tasks-header-border-radius: 35px 35px 0px 0px;
-    --toggle-side: 5px;
-    --toggle-state: 'EDIT';
-    --toggle-text-pos: 30px;
+    --tasks-header-border-radius: 35px 35px 0px 0px; 
+    --toggle-side: 5px; 
+    --toggle-state: 'EDIT'; 
+    --toggle-text-pos: 30px; 
 }
 
+/* Sets the body background color, and controls overflow for x and y axes. */
 body {
     background-color: blue;
     overflow-y: auto;
     overflow-x: hidden; 
 }
 
+/* Styles for the task form, including positioning, display status, and aesthetics. */
 #task-form {
     position: absolute;
     top: 20vh;
     left: 35vw;
-    display: none;
+    display: none; 
     width: 30vw;
     padding: 30px;
     background-color: #f9f9f9;
     border: 2px solid black;
     border-radius: 30px;
-    z-index: 5;
+    z-index: 5; 
 }
 
+/* Margin for div elements inside the task form for better spacing. */
 #task-form div {
     margin-top: 25px;
 }
 
+/* Styles for the task submission button container. */
 #add-task-submit-btm {
     display: flex;
     justify-content: end;
 }
 
+/* Button styles within the task submission container. */
 #add-task-submit-btm button {
     width: 100px;
-    height: 25 px;
+    height: 25px; 
     border-radius: 10px;
 }
 
+/* Container for the top section of the layout, using flexbox for alignment. */
 #top-container {
     display: flex;
-    justify-content:  space-between;
+    justify-content: space-between; 
     height: 25vh;
     width: 100vw;
 }
 
+/* Left section of the top container, aligning items centrally in a flex layout. */
 #left-side {
     display: flex;
     align-items: center;
 }
 
+/* Styling for the icon element, including position and padding. */
 #icon {
     position: relative;
     padding-left: 50px;
 }
 
+/* Pseudo-element for the icon, used to add text content next to the icon. */
 #icon::before {
     position: absolute;
     top: 12px;
     left: 120%;
-    content: "To Do List";
+    content: "To Do List"; 
     color: white;
-    font: 3.5em sans-serif;
+    font: 3.5em sans-serif; 
     white-space: nowrap;
 }
 
+/* Right section of the top container, using flexbox for layout and spacing. */
 #right-side {
     display: flex;
     flex-direction: column;
@@ -78,11 +90,13 @@ body {
     padding: 0px 14.5vw;
 }
 
+/* Container for the "Add" button, centered using flexbox. */
 #add-btn-container {
-    display: flex;  
+    display: flex;
     justify-content: center;
 }
 
+/* Styling for the "Add" button, including size, font, and border properties. */
 #add-btn {
     height: 40px;
     width: 9vw;
@@ -92,10 +106,12 @@ body {
     border-radius: 40px;
 }
 
+/* Hover effect for the "Add" button, changing the background color. */
 #add-btn:hover {
     background-color: #ccc;
 }
 
+/* Container for section buttons, positioned absolutely for layout control. */
 #sections {
     position: absolute;
     top: 22vh;
@@ -104,31 +120,35 @@ body {
     justify-content: center;
 }
 
+/* Styling for buttons within the #sections container. */
 #sections button {
     font-size: 0.8em;
     height: 3vh;
     padding: 0px 15px;
     border: 1px solid black;
-    border-radius: 10px 10px 0px 0px;
+    border-radius: 10px 10px 0px 0px; 
     background-color: #C0C0C0;
 }
 
+/* Additional styling for a selected section button. */
 #sections .selected-section {
-    border-bottom: none;
+    border-bottom: none; 
     background-color: #F0F0F0;
 }
 
+/* Main container for the application, positions the content and sets dimensions. */
 #main-container {
     position: absolute;
     top: 25vh;
     left:0;
     width: 100vw;
-    min-height: 75vh; 
+    min-height: 75vh;
     display: flex;
     background-color: #F0F0F0;
     justify-content: center;
 }
 
+/* Container for tasks, setting dimensions, styling, and margins. */
 #tasks-container {
     position: relative;
     width: 40vw;
@@ -140,6 +160,7 @@ body {
     margin: 75px 0px;
 }
 
+/* Styling for the header part of the tasks container, adding color and typography. */
 #tasks-container::before{
     position: absolute;
     top: 0px;
@@ -156,6 +177,7 @@ body {
     justify-content: center;
 }
 
+/* Arrow used to open the task sidebar, positioned in the top-right corner. */
 #open-arrow {
     position: absolute;
     top: 5px;
@@ -164,6 +186,7 @@ body {
     color: white;
 }
 
+/* Style for individual task entries, setting layout and spacing. */
 .task {
     display: flex;
     justify-content: space-between;
@@ -174,6 +197,7 @@ body {
     margin: 20px 0px;
 }
 
+/* Style for the calendar entries, including layout and spacing. */
 .calender {
     display: flex;
     justify-content: space-between;
@@ -181,15 +205,18 @@ body {
     column-gap: 10px;
 }
 
+/* Style for tasks marked as completed, adding a line-through effect. */
 .completed {
     text-decoration: line-through;
     background-color: #e0e0e0;
 }
 
+/* Removes the line-through effect when a completed task is in the edit state. */
 .completed.editState {
     text-decoration: none;
 }
 
+/* Styling for the menu, including its hidden state, positioning, and dimensions. */
 #menu {
     display: none;
     position: absolute;
@@ -203,9 +230,9 @@ body {
     padding-top: 100px;
     box-sizing: border-box;
     flex-direction: column;
-
 }
 
+/* Style for the toggle switch, including position, dimensions, and styling. */
 #toggle {
     position: absolute;
     top: 40px;
@@ -217,6 +244,7 @@ body {
     border-radius: 20px;
 }
 
+/* Before pseudo-element for the toggle, creating a circular indicator. */
 #toggle::before {
     content: '';
     position: absolute;
@@ -228,6 +256,7 @@ body {
     background-color: blue;
 }
 
+/* After pseudo-element for the toggle, displaying the current state as text. */
 #toggle::after {
     position: absolute;
     top: 3px;
@@ -236,12 +265,14 @@ body {
     color: blue;
 }
 
+/* Style for the button list in edit or delete mode, arranging buttons vertically. */
 #button-list {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+/* Style for individual mode buttons, such as edit and delete buttons, including dimensions and margins. */
 .mode-btn {
     width: 70px;
     height: 30px;
