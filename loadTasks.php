@@ -21,6 +21,7 @@ $tasks = [];
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
+        // changes phps defual bollean values of 0 and 1 to true and false
         $row['completed'] = $row['completed'] == 1;
         $tasks[] = $row;
     }
