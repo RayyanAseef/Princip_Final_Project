@@ -1,0 +1,250 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+:root {
+    --tasks-header-border-radius: 35px 35px 0px 0px;
+    --toggle-side: 5px;
+    --toggle-state: 'EDIT';
+    --toggle-text-pos: 30px;
+}
+
+body {
+    background-color: blue;
+    overflow-y: auto;
+    overflow-x: hidden; 
+}
+
+#task-form {
+    position: absolute;
+    top: 20vh;
+    left: 35vw;
+    display: none;
+    width: 30vw;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border: 2px solid black;
+    border-radius: 30px;
+    z-index: 5;
+}
+
+#task-form div {
+    margin-top: 25px;
+}
+
+#add-task-submit-btm {
+    display: flex;
+    justify-content: end;
+}
+
+#add-task-submit-btm button {
+    width: 100px;
+    height: 25 px;
+    border-radius: 10px;
+}
+
+#top-container {
+    display: flex;
+    justify-content:  space-between;
+    height: 25vh;
+    width: 100vw;
+}
+
+#left-side {
+    display: flex;
+    align-items: center;
+}
+
+#icon {
+    position: relative;
+    padding-left: 50px;
+}
+
+#icon::before {
+    position: absolute;
+    top: 12px;
+    left: 120%;
+    content: "To Do List";
+    color: white;
+    font: 3.5em sans-serif;
+    white-space: nowrap;
+}
+
+#right-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 0px 14.5vw;
+}
+
+#add-btn-container {
+    display: flex;  
+    justify-content: center;
+}
+
+#add-btn {
+    height: 40px;
+    width: 9vw;
+    font-size: large;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 40px;
+}
+
+#add-btn:hover {
+    background-color: #ccc;
+}
+
+#sections {
+    position: absolute;
+    top: 22vh;
+    right: 7vw;
+    display: flex;
+    justify-content: center;
+}
+
+#sections button {
+    font-size: 0.8em;
+    height: 3vh;
+    padding: 0px 15px;
+    border: 1px solid black;
+    border-radius: 10px 10px 0px 0px;
+    background-color: #C0C0C0;
+}
+
+#sections .selected-section {
+    border-bottom: none;
+    background-color: #F0F0F0;
+}
+
+#main-container {
+    position: absolute;
+    top: 25vh;
+    left:0;
+    width: 100vw;
+    min-height: 75vh; 
+    display: flex;
+    background-color: #F0F0F0;
+    justify-content: center;
+}
+
+#tasks-container {
+    position: relative;
+    width: 40vw;
+    min-height: 40vh;
+    padding: 100px 20px 20px 20px;
+    background-color: white;
+    border-radius: 35px;
+    border: 1px solid black;
+    margin: 75px 0px;
+}
+
+#tasks-container::before{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 80px;
+    background-color: blue;
+    border-radius: var(--tasks-header-border-radius);
+    content: 'Tasks';
+    color: white;
+    font: 3em sans-serif;
+    padding-top: 20px;
+    text-align: center;
+    justify-content: center;
+}
+
+#open-arrow {
+    position: absolute;
+    top: 5px;
+    right: 30px;
+    font-size: 1.5em;
+    color: white;
+}
+
+.task {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 40px;
+    height: 40px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    margin: 20px 0px;
+}
+
+.calender {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.completed {
+    text-decoration: line-through;
+    background-color: #e0e0e0;
+}
+
+.completed.editState {
+    text-decoration: none;
+}
+
+#menu {
+    display: none;
+    position: absolute;
+    top: -1px;
+    right: -20%;
+    height: calc( 100% + 2px );
+    width: 20%;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 0px 35px 35px 0px;
+    padding-top: 100px;
+    box-sizing: border-box;
+    flex-direction: column;
+
+}
+
+#toggle {
+    position: absolute;
+    top: 40px;
+    left: calc( 50% - 55px );
+    width: 110px;
+    height: 25px;
+    background-color: white;
+    border: 3px solid blue;
+    border-radius: 20px;
+}
+
+#toggle::before {
+    content: '';
+    position: absolute;
+    top: calc( 50% - 10px );
+    left: var(--toggle-side);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: blue;
+}
+
+#toggle::after {
+    position: absolute;
+    top: 3px;
+    left: var(--toggle-text-pos);
+    content: var(--toggle-state);
+    color: blue;
+}
+
+#button-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mode-btn {
+    width: 70px;
+    height: 30px;
+    margin-top: 35px;
+    margin-bottom: 15px;
+}

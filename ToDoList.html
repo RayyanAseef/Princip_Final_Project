@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To Do List</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div id="task-form">
+        <form class="myForm" method="POST" action="">
+            <h1 style="text-align: center;">Task Form</h1>
+            <div>
+                <label for="name">Name: </label>
+                <input id="name" type="text">
+            </div>
+            <div>
+                <label for="date">Due Date: </label>
+                <input id="date" type="date">
+            </div>  
+            <div><p>Description:</p><textarea id="description" rows="8" style="width: 30vw"></textarea></div>
+            <div id="add-task-submit-btm"><button type="button" onclick="addTask()">Add Task</button></div>
+        </form>
+    </div>
+    <div id="top-container">
+        <div id='left-side'>
+            <div id="icon"><img src="ToDoList_Icon.png" width="85px"></div>
+        </div>
+        <div id="right-side">
+            <div id="add-btn-container"><button id="add-btn" onclick="toggleTaskForm()">Add Task</button></div>
+        </div>
+        <div id="sections">
+            <button id="allTasks" onclick="selectSection(this.id)" class="selected-section section-button">All Tasks</button>
+            <button id="completedTasks" onclick="selectSection(this.id)" class="section-button">Completed Tasks</button>
+            <button id="uncompletedTasks" onclick="selectSection(this.id)" class="section-button">Uncompleted Tasks</button>
+        </div>
+    </div>
+    <div id="main-container">
+        <div id="tasks-container">
+            <p id="open-arrow" onclick="openMenu()">></p>
+            <div id='menu'>
+                <div id="toggle" onclick="moveToggle()"></div>
+                <div id="button-list"></div>
+            </div>
+            <div id="tasks-list"></div>
+        </div>  
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
