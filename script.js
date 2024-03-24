@@ -17,25 +17,34 @@ document.addEventListener("DOMContentLoaded", ()=> {
     updateMode(); 
 });
 
-// Function to save tasks by sending them to a server-side PHP script using POST request
 function saveTasks() {
-    fetch('saveTasks.php', { // Send a fetch request to saveTasks.php
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(tasks) // Convert tasks array to JSON string and set as request body
-    })
+    localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
-// Function to load tasks by fetching them from a server-side PHP script
 function loadTasks() {
-    fetch('loadTasks.php') // Send a fetch request to loadTasks.php
-        .then(response => response.json()) // Parse the response as JSON
-        .then(data => {
-            tasks = data; // Update tasks array with fetched data
-        });
+    const tempTask = JSON.parse(localStorage.getItem("tasks"));
+    if (tempTask) { tasks = tempTask; }
 }
+
+// // Function to save tasks by sending them to a server-side PHP script using POST request
+// function saveTasks() {
+//     fetch('saveTasks.php', { // Send a fetch request to saveTasks.php
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify(tasks) // Convert tasks array to JSON string and set as request body
+//     })
+// }
+
+// // Function to load tasks by fetching them from a server-side PHP script
+// function loadTasks() {
+//     fetch('loadTasks.php') // Send a fetch request to loadTasks.php
+//         .then(response => response.json()) // Parse the response as JSON
+//         .then(data => {
+//             tasks = data; // Update tasks array with fetched data
+//         });
+// }
 
 // Function to toggle the display of the task form between none (hidden) and block (visible)
 function toggleTaskForm() {
@@ -55,7 +64,7 @@ function addTask() {
         completed: false,
         name: inputName,
         date: inputDate,
-        description: description,
+        description: inputDescription,
     } );
 
     // Saving the task to the backend, Udating the display and reseting the mode to ideal state
@@ -101,6 +110,20 @@ function updateTask(taskItem, task) {
     const date = document.createElement('h3');
     date.innerText = task.date;
     calender.appendChild(date)
+
+    // Creating a div for the task description
+    const taskDescription = document.createElement('div');
+    taskDescription.className = 'task-description';
+
+    // creating the description text
+    const description = document.createElement('p');
+    description.innerText = task.description; // Assuming 'task.description' holds the task's description
+    taskDescription.appendChild(description);
+
+    // Adding the task description to the main task item
+    taskItem.appendChild(taskDescription);
+
+    taskItem.onclick = toggleDescription;
 }
 
 // Updating tasks on to the display
@@ -121,6 +144,28 @@ function updateTasks() {
     });
 }
 
+function toggleDescription(event) {
+    
+    // Prevent the click event from triggering checkbox state changes or other handlers
+    event.stopPropagation();
+
+    // Navigate to the parent task item from the target, then find the task description within it
+    let taskItem = event.currentTarget; // Use currentTarget to refer to the item the event handler is directly attached to
+    let description = taskItem.querySelector('.task-description');
+
+    // Toggle visibility and adjust padding based on description div's height
+    if (description.style.display === "none" || description.style.display === "") {
+        description.style.display = "block";
+        // After the description is made visible, measure its height
+        let descriptionHeight = description.offsetHeight; // Get the visible height of the description element
+        // Set the bottom margin to be the height of the description plus an additional 20px
+        taskItem.style.marginBottom = (descriptionHeight + 20) + 'px';
+    } else {
+        description.style.display = "none";
+        // Reset the bottom margin when the description is hidden
+        taskItem.style.marginBottom = "20px"; // You can adjust this value if you want different spacing when hidden
+    }
+}
 
 // Function to select a particular section based on sectionID.
 function selectSection(sectionID) {
