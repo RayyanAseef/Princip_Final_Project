@@ -286,6 +286,7 @@ body {
     position: absolute;
     top: 100%;
     left: 0px;
+    min-height: 30px;
     width: 100%;
     border: 1px solid #ccc;
     background-color: #f9f9f9;
