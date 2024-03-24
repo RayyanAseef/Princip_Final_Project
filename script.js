@@ -17,34 +17,34 @@ document.addEventListener("DOMContentLoaded", ()=> {
     updateMode(); 
 });
 
-function saveTasks() {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-}
-
-function loadTasks() {
-    const tempTask = JSON.parse(localStorage.getItem("tasks"));
-    if (tempTask) { tasks = tempTask; }
-}
-
-// // Function to save tasks by sending them to a server-side PHP script using POST request
 // function saveTasks() {
-//     fetch('saveTasks.php', { // Send a fetch request to saveTasks.php
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify(tasks) // Convert tasks array to JSON string and set as request body
-//     })
+//     localStorage.setItem("tasks", JSON.stringify(tasks));
 // }
 
-// // Function to load tasks by fetching them from a server-side PHP script
 // function loadTasks() {
-//     fetch('loadTasks.php') // Send a fetch request to loadTasks.php
-//         .then(response => response.json()) // Parse the response as JSON
-//         .then(data => {
-//             tasks = data; // Update tasks array with fetched data
-//         });
+//     const tempTask = JSON.parse(localStorage.getItem("tasks"));
+//     if (tempTask) { tasks = tempTask; }
 // }
+
+// Function to save tasks by sending them to a server-side PHP script using POST request
+function saveTasks() {
+    fetch('saveTasks.php', { // Send a fetch request to saveTasks.php
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(tasks) // Convert tasks array to JSON string and set as request body
+    })
+}
+
+// Function to load tasks by fetching them from a server-side PHP script
+function loadTasks() {
+    fetch('loadTasks.php') // Send a fetch request to loadTasks.php
+        .then(response => response.json()) // Parse the response as JSON
+        .then(data => {
+            tasks = data; // Update tasks array with fetched data
+        });
+}
 
 // Function to toggle the display of the task form between none (hidden) and block (visible)
 function toggleTaskForm() {
